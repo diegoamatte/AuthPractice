@@ -29,7 +29,7 @@ namespace AuthPractice.Controllers
         [HttpPost("/[controller]/login")]
         public async Task<IActionResult> LoginAsync([FromBody]AuthRequest request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
+            var user = await _userManager.FindByNameAsync(request.Username);
             if(user is null || !await _userManager.CheckPasswordAsync(user, request.Password))
             {
                 return Forbid();
