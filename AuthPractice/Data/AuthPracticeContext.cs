@@ -1,20 +1,18 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AuthPractice.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AuthPractice.Data
 {
-    public class AuthPracticeContext : DbContext
+    public class AuthPracticeContext : IdentityDbContext<User>
     {
         public AuthPracticeContext (DbContextOptions<AuthPracticeContext> options)
             : base(options)
         {
         }
 
-        public DbSet<AuthPractice.Models.Phone> Phone { get; set; }
+        public DbSet<Phone> Phone { get; set; }
+
     }
 }
