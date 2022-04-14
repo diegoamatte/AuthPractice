@@ -84,16 +84,16 @@ namespace AuthPractice.Controllers
         }
 
         [HttpPost("/[controller]/register")]
-        public async Task<IActionResult> Register([FromBody]AuthRequest request)
+        public async Task<IActionResult> Register([FromBody]RegisterRequest request)
         {
             var user = new User
             {
-                Email = "test@demo.com",
-                FirstName = "Test",
-                LastName = "User",
-                UserName = "diego"
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                UserName = request.Username
             };
-            var result = await _userManager.CreateAsync(user, "Diego88!");
+            var result = await _userManager.CreateAsync(user, request.Password);
             if (!result.Succeeded)
                 return BadRequest(new
                 {
